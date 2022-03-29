@@ -1,1 +1,31 @@
-<h1> Hi from Eric </h1>
+<!DOCTYPE HTML>
+<html>
+
+<body>
+
+    <p>Before the script...</p>
+    <audio src='sound/jump.ogg' id="my_audio"></audio>
+
+    <script type="text/javascript">
+
+        function play() {
+            var audio = new Audio('sound/unlocked.mp3');
+            audio.play();
+        }
+
+        setTimeout(function () {
+            document.getElementById("my_audio").play();
+            console.log('your audio is started just now');
+        }, 2000)
+
+</script>
+
+    <button onclick="play()">Play Audio</button>
+
+    <p>...After the script.</p>
+
+    <!-- <audio src="D:\zTmp\jump.ogg" controls autoplay ></audio> -->
+
+</body>
+
+</html>
