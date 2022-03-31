@@ -3,28 +3,24 @@
 
 <body>
 
-    <p>Before the script...</p>
-    <audio src='sound/jump.ogg' id="my_audio"></audio>
+  <p>Before the script...</p>
+  <audio src='sound/unlocked.mp3' id="my_audio"></audio>
 
-    <script type="text/javascript">
+  </script>
+  <script src="js/alarm.js"></script>
 
-        function play() {
-            var audio = new Audio('sound/unlocked.mp3');
-            audio.play();
-        }
+  <button onclick="play()">Play Audio</button>
+  <button onclick="playDelayed(3)">Play (Delayed 3 sec)</button>
+  <button onclick="playDelayed(10)">Play (Delayed 10 sec)</button>
 
-        setTimeout(function () {
-            document.getElementById("my_audio").play();
-            console.log('your audio is started just now');
-        }, 2000)
+  <p>...After the script.</p>
 
-</script>
+  <!-- <audio src="D:\zTmp\jump.ogg" controls autoplay ></audio> -->
 
-    <button onclick="play()">Play Audio</button>
+  <label for="appt">Choose a time for your meeting:</label>
+  <input type="time" id="appt" name="appt" min="09:00" max="18:00" required>
+  <small>Office hours are 9am to 6pm</small>
 
-    <p>...After the script.</p>
-
-    <!-- <audio src="D:\zTmp\jump.ogg" controls autoplay ></audio> -->
 
 </body>
 
