@@ -1,12 +1,55 @@
 <!DOCTYPE HTML>
 <html>
 
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <title>JavaScript Alarm</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
 <body>
 
   <p>Before the script...</p>
   <audio src='sound/unlocked.mp3' id="my_audio"></audio>
 
+  <script>
+
+    // Function to convert time to string value
+    const getTimeString = ({ hours, minutes, seconds, zone }) => {
+      if (minutes / 10 < 1) {
+        minutes = "0" + minutes;
+      }
+      if (seconds / 10 < 1) {
+        seconds = "0" + seconds;
+      }
+      return `${hours}:${minutes}:${seconds} ${zone}`;
+    };
+
+    // Function to display current time on screen
+    const renderTime = () => {
+      var currentTime = document.getElementById("current-time");
+      const currentDate = new Date();
+      var hours = currentDate.getHours();
+      var minutes = currentDate.getMinutes();
+      var seconds = currentDate.getSeconds();
+      var zone = hours >= 12 ? "PM" : "AM";
+      if (hours > 12) {
+        hours = hours % 12;
+      }
+      const timeString = getTimeString({ hours, minutes, seconds, zone });
+      currentTime.innerHTML = timeString;
+    };
+
+    // Update time every second
+    // &&ep - uncomment to display time
+    setInterval(renderTime, 1000);
+
   </script>
+
   <script src="js/alarm.js"></script>
 
   <button onclick="play()">Play Audio</button>
@@ -17,10 +60,19 @@
 
   <!-- <audio src="D:\zTmp\jump.ogg" controls autoplay ></audio> -->
 
-  <label for="appt">Choose a time for your meeting:</label>
+  <label for="appt">Alarm time:</label>
   <input type="time" id="appt" name="appt" min="09:00" max="18:00" required>
-  <small>Office hours are 9am to 6pm</small>
+  <small>Press stop to stop snoozing</small>
 
+  <div id="app">
+    <h1>Current Time</h1>
+    <div id="current-time"></div>
+  </div>
+
+  <div id="root"></div>
+  <script src="js/model.js"></script>
+  <script src="js/view.js"></script>
+  <script src="js/controller.js"></script>
 
 </body>
 
