@@ -1,6 +1,6 @@
 
 var play = function() {
-  var audio = new Audio('sound/jump.ogg');
+  var audio = new Audio('sound/unlocked.mp3');
   audio.play();
 }
 

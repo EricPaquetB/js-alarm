@@ -7,7 +7,7 @@ class View {
 
     // The title of the app
     this.title = this.createElement('h1')
-    this.title.textContent = 'Todos'
+    this.title.textContent = 'JS Alarm'
 
     this.inputAlarmTime = this.createElement('input')
     this.inputAlarmTime.setAttribute('type', 'time')
@@ -16,9 +16,16 @@ class View {
     this.inputToggleOnOff = this.createElement('input')
     this.inputToggleOnOff.setAttribute('type', 'checkbox')
 
-    // Append the title, form, and todo list to the app
-    this.app.append(this.title, this.inputAlarmTime, this.inputToggleOnOff)
+    // Indicate if alarm is on or off
+    this.alarmState = this.createElement('h5');
+    //this.alarmState.textContent = 'Alarm is off';
 
+    // Current time
+    this.currentTime = this.createElement('h5')
+    this.currentTime.textContent = ''
+
+    // Append the title, form, and todo list to the app
+    this.app.append(this.title, this.inputAlarmTime, this.inputToggleOnOff, this.alarmState, this.currentTime);
   }
 
   // Create an element with an optional CSS class
@@ -38,8 +45,33 @@ class View {
 
   bindSetAlarmTime(handler) {
     this.inputAlarmTime.addEventListener('change', event => {
-      handler()
+      handler(this.inputAlarmTime.value)
     })
+  }
+
+  bindToggleOnOff(handler) {
+    this.inputToggleOnOff.addEventListener('change', event => {
+      if (event.currentTarget.checked) {
+        handler(true);
+      } else {
+        handler(false);
+      }
+    })
+  }
+
+  setAlarmStateOn(stateIsOn) {
+    if (stateIsOn) {
+      this.alarmState.textContent = 'Alarm is on';
+      this.inputToggleOnOff.checked = true;
+    }
+    else {
+      this.alarmState.textContent = 'Alarm is off';
+      this.inputToggleOnOff.checked = false;
+    }
+  }
+
+  setCurrentTime(currentTime) {
+    this.currentTime.textContent = currentTime;
   }
 
 }
